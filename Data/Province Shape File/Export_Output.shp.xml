@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20240417</CreaDate><CreaTime>23092000</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\application\desktop10.8\ArcToolbox\Toolboxes\Conversion Tools.tbx\RasterToPolygon" Date="20240417" Time="230829">RasterToPolygon VLUCD_L1_250m_2000_Clip1 C:\Users\CA_UOP_MUOI\Documents\ArcGIS\Default.gdb\RasterT_VLUCD_L2 SIMPLIFY Value SINGLE_OUTER_PART #</Process></lineage></DataProperties></Esri></metadata>
