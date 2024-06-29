@@ -55,16 +55,23 @@ def metrics_calculation(y_actual, y_pred):
 
     return metrics
      
-def metrics_table():
+def metrics_table(starting_year, test_set, estimator):
      
-    table = pd.DataFrame()
+     table = pd.DataFrame()
 
-    columns = ['Year', 'RMSE', 'RRMSE', 'R2_Score', 'MSE', 'MAE', 'RAE', 'RSE']
+     columns = ['Year', 'RMSE', 'RRMSE (in %)', 'R2_Score', 'MSE', 'MAE', 'RAE', 'RSE']
 
-    for i, col in enumerate(columns):
+     for i, col in enumerate(columns):
          table.insert(i, col, None)
+         
+     for i, (X_test, y_test) in enumerate(test_set):
+          row = [starting_year + i]
+          row += metrics_calculation(y_actual=y_test, y_pred=estimator.predict(X_test))
+          
+          table.loc[len(table)] = row
+          
     
-    return table
+     return table
 
 
     
