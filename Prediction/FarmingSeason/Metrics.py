@@ -55,7 +55,7 @@ def metrics_calculation(y_actual, y_pred):
 
     return metrics
      
-def metrics_table(starting_year, test_set, estimator):
+def metrics_table(starting_year, test_set, estimator, predictors=None):
      
      table = pd.DataFrame()
 
@@ -65,6 +65,10 @@ def metrics_table(starting_year, test_set, estimator):
          table.insert(i, col, None)
          
      for i, (X_test, y_test) in enumerate(test_set):
+          
+          if (predictors != None):
+               X_test = X_test[predictors]
+          
           row = [starting_year + i]
           row += metrics_calculation(y_actual=y_test, y_pred=estimator.predict(X_test))
           
