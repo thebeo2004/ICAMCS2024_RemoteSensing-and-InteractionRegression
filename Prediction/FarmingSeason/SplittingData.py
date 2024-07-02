@@ -21,3 +21,13 @@ def splitting_data():
         test_set.append((X_test, y_test))
 
     return X_train, y_train, test_set
+
+import numpy as np
+
+X_train, y_train, test_set = splitting_data()
+ 
+a = np.array(y_train).flatten()
+b = np.array(y_train).flatten()
+
+print(a - b)
+
