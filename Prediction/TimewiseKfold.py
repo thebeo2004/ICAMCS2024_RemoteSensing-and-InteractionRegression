@@ -2,6 +2,8 @@ import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import TimeSeriesSplit
 
+FOLD_NUM = 3
+
 def splitting_data():
     
     dir_path = Path(__file__).parent.parent.absolute()
@@ -16,7 +18,7 @@ def splitting_data():
     
     folds = []
     
-    tscv = TimeSeriesSplit(n_splits=3, test_size=7)
+    tscv = TimeSeriesSplit(n_splits=FOLD_NUM, test_size=7)
     
     for (train_index, test_index) in (tscv.split(y)):
         folds.append({
@@ -27,3 +29,7 @@ def splitting_data():
         })
     
     return folds
+
+def split_train_test(fold):
+    return fold['X_train'], fold['X_test'], fold['y_train'], fold['y_test']
+

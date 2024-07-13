@@ -52,21 +52,23 @@ def r2(y_actual, y_pred, avg_y_train):
      
      return r2
 
-def metrics_calculation(y_actual, y_pred, avg_y_train):
-
-    RMSE = root_mean_squared_error(y_actual, y_pred)
-    RRMSE = relative_root_mean_squared_error(y_actual=y_actual, y_pred=y_pred) * 100
-    R2_Score = r2(y_actual=y_actual, y_pred=y_pred, avg_y_train=avg_y_train)
-    MSE = mean_squared_error(y_true=y_actual, y_pred=y_pred)
-    MAE = mean_absolute_error(y_true=y_actual, y_pred=y_pred)
-    RAE = relative_absolute_error(y_actual=y_actual, y_pred=y_pred)
-    RSE = relative_squared_error(y_actual=y_actual, y_pred=y_pred)
-
-    metrics = [RMSE, RRMSE, R2_Score, MSE, MAE, RAE, RSE]
-
-    return metrics
+def metrics_calculation(y_actual, y_pred, y_train, y_train_predicted):
      
-def metrics_table(starting_year, test_set, avg_y_train, estimator, predictors=None):
+     avg_y_train = y_train['RandomCropYield'].mean()
+     
+     RMSE = root_mean_squared_error(y_actual, y_pred)
+     RRMSE = relative_root_mean_squared_error(y_actual=y_actual, y_pred=y_pred) * 100
+     R2_Score = r2(y_actual=y_actual, y_pred=y_pred, avg_y_train=avg_y_train)
+     MSE = mean_squared_error(y_true=y_actual, y_pred=y_pred)
+     MAE = mean_absolute_error(y_true=y_actual, y_pred=y_pred)
+     RAE = relative_absolute_error(y_actual=y_actual, y_pred=y_pred)
+     RSE = relative_squared_error(y_actual=y_actual, y_pred=y_pred)
+
+     metrics = [RMSE, RRMSE, R2_Score, MSE, MAE, RAE, RSE]
+
+     return metrics
+     
+def metrics_table():
      
      table = pd.DataFrame()
 
@@ -74,18 +76,7 @@ def metrics_table(starting_year, test_set, avg_y_train, estimator, predictors=No
 
      for i, col in enumerate(columns):
          table.insert(i, col, None)
-         
-     for i, (X_test, y_test) in enumerate(test_set):
-          
-          if (predictors != None):
-               X_test = X_test[predictors]
-          
-          row = [starting_year + i]
-          row += metrics_calculation(y_actual=y_test, y_pred=estimator.predict(X_test), avg_y_train=avg_y_train)
-          
-          table.loc[len(table)] = row
-          
-    
+           
      return table
 
 
