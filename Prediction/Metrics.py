@@ -52,7 +52,7 @@ def r2(y_actual, y_pred, avg_y_train):
      
      return r2
 
-def metrics_calculation(y_actual, y_pred, y_train, y_train_predicted):
+def metrics_calculation(y_actual, y_pred, y_train):
      
      avg_y_train = y_train['RandomCropYield'].mean()
      

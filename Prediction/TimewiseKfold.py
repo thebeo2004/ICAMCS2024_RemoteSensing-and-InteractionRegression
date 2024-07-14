@@ -8,7 +8,7 @@ def splitting_data():
     
     dir_path = Path(__file__).parent.parent.absolute()
     weather_path = dir_path / 'Data/Weather.csv'
-    yield_path = dir_path / 'Data/RandomCropYield.csv'
+    yield_path = dir_path / 'Data/RandomCropYield2.csv'
     
     weather_df = pd.read_csv(weather_path)
     yield_df = pd.read_csv(yield_path)
