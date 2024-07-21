@@ -277,4 +277,6 @@ def heuristic_interaction_detection(scaled_folds, selected_features, K):
         else:
             break
     
-    return alphas_res, deltas_res, RMSE_FOLDS(scaled_folds=scaled_folds, alphas=alphas_res, deltas=deltas_res, selected_features=selected_features)
+    rmse_train, rmse_validation = RMSE_FOLDS(scaled_folds=scaled_folds, alphas=alphas_res, deltas=deltas_res, selected_features=selected_features)
+    
+    return alphas_res, deltas_res, rmse_train, rmse_validation
