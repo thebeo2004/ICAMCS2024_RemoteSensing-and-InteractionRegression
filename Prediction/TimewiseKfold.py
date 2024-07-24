@@ -4,6 +4,7 @@ from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import MinMaxScaler
 
 FOLD_NUM = 3
+PROVINCES_NUM = 7
 
 def splitting_data(is_scaled=False):
     
@@ -23,7 +24,7 @@ def splitting_data(is_scaled=False):
     
     folds = []
     
-    tscv = TimeSeriesSplit(n_splits=FOLD_NUM, test_size=7)
+    tscv = TimeSeriesSplit(n_splits=FOLD_NUM, test_size=PROVINCES_NUM)
     
     for (train_index, test_index) in (tscv.split(y)):
         folds.append({
@@ -37,3 +38,12 @@ def splitting_data(is_scaled=False):
 
 def split_train_test(fold):
     return fold['X_train'], fold['X_test'], fold['y_train'], fold['y_test']
+
+def split_train_validation(X, y):
+    X_train = X[:(len(X) - PROVINCES_NUM)]
+    y_train = y[:(len(X) - PROVINCES_NUM)]
+    
+    X_validation = X[-PROVINCES_NUM:]
+    y_validation = y[-PROVINCES_NUM:]
+    
+    return X_train, X_validation, y_train, y_validation
