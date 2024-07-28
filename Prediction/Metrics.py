@@ -34,7 +34,7 @@ def relative_root_mean_squared_error(y_actual, y_pred):
         RMSE = mean_squared_error(y_true=y_actual, y_pred=y_pred) ** 1/2
         
         y_actual, y_pred = flatten(y_actual=y_actual, y_pred=y_pred)
-        denominator = (np.sum(y_pred ** 2)) ** 1/2
+        denominator = np.mean(y_actual)
 
         if (denominator == 0):
              print("Warning at RRMSE")
