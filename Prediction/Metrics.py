@@ -34,7 +34,7 @@ def relative_root_mean_squared_error(y_actual, y_pred):
         RMSE = mean_squared_error(y_true=y_actual, y_pred=y_pred) ** 1/2
         
         y_actual, y_pred = flatten(y_actual=y_actual, y_pred=y_pred)
-        denominator = np.mean(y_actual)
+        denominator = np.std(y_actual)
 
         if (denominator == 0):
              print("Warning at RRMSE")
@@ -64,7 +64,7 @@ def metrics_calculation(y_actual, y_pred, y_train):
      RAE = relative_absolute_error(y_actual=y_actual, y_pred=y_pred)
      RSE = relative_squared_error(y_actual=y_actual, y_pred=y_pred)
 
-     metrics = [RMSE, RRMSE, R2_Score, MSE, MAE, RAE, RSE]
+     metrics = [RMSE, R2_Score, MSE, MAE, RAE, RSE]
 
      return metrics
      
@@ -72,7 +72,7 @@ def metrics_table():
      
      table = pd.DataFrame()
 
-     columns = ['Year', 'RMSE', 'RRMSE (in %)', 'R2_Score', 'MSE', 'MAE', 'RAE', 'RSE']
+     columns = ['Year', 'RMSE', 'R2_Score', 'MSE', 'MAE', 'RAE', 'RSE']
 
      for i, col in enumerate(columns):
          table.insert(i, col, None)
