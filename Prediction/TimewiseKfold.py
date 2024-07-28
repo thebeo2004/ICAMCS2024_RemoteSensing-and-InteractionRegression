@@ -4,13 +4,13 @@ from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import MinMaxScaler
 
 FOLD_NUM = 3
-PROVINCES_NUM = 7
+PROVINCES_NUM = 24
 
 def splitting_data(is_scaled=False):
     
     dir_path = Path(__file__).parent.parent.absolute()
     weather_path = dir_path / 'Data/Weather.csv'
-    yield_path = dir_path / 'Data/RandomCropYield2.csv'
+    yield_path = dir_path / 'Data/RandomCropYield(Regression).csv'
     
     weather_df = pd.read_csv(weather_path)
     yield_df = pd.read_csv(yield_path)
