@@ -1,8 +1,18 @@
 #ignore all changes in data folder
+*.tfw
 *.tif
-*.shp
-*.tif.xml
 *.tif.aux.xml
-*.shp.xml 
+*.tif.ovr
+*.tif.xml
+
+*.cpg
+*.dbf
+*.prj
+*.sbn
+*.sbx
+*.shp
+*.shp.xml
+*.shx
+
 
 
