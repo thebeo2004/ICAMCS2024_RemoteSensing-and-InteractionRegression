@@ -1,0 +1,8 @@
+#ignore all changes in data folder
+*.tif
+*.shp
+*.tif.xml
+*.tif.aux.xml
+*.shp.xml 
+
+
