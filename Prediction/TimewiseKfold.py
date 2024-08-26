@@ -18,7 +18,7 @@ def splitting_data(is_scaled=False, is_NDVI=False):
     yield_df = pd.read_csv(yield_path)
     
     #Removing data of Ben Tre and Tra Vinh in 2020
-    remove_index = list(weather_df[(weather_df['Year'] == 2020) & (weather_df['Province'].isin(['Ben_Tre', 'Tra_Vinh']))].index)
+    remove_index = list(weather_df[(weather_df['Year'] == 2020) & (weather_df['Province'].isin(['Ben_Tre']))].index)
     # print(remove_index)
     
     if (is_NDVI == False):
@@ -42,8 +42,8 @@ def splitting_data(is_scaled=False, is_NDVI=False):
         test_index = list(test_index)
         if (test_index.count(remove_index[0]) > 0):
             test_index.remove(remove_index[0])
-        if (test_index.count(remove_index[1]) > 0):
-            test_index.remove(remove_index[1])
+        # if (test_index.count(remove_index[1]) > 0):
+        #     test_index.remove(remove_index[1])
         
         folds.append({
             'X_train': X.iloc[train_index],
