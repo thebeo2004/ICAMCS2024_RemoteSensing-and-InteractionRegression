@@ -1,1 +1,1 @@
-# Remote Sensing Application & Interaction Model in Crop Yield Prediction at Red River Delta, Vietnam
+# An interaction model & remote sensing application in crop yield prediction
