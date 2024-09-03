@@ -213,8 +213,6 @@ def Evaluate(transformed_folds, alpha_set, delta_set, interaction_types, PROVINC
     RMSE_validation = 0
     RMSE_min = 999999999
     
-    # transformed_folds = transform_data(scaled_folds=scaled_folds, selected_features=selected_features, alphas=alphas_res, deltas=deltas_res)
-    
     for i, alpha in enumerate(alpha_set):
         for delta in delta_set:
             RMSE_train_cur, RMSE_validation_cur = RMSE_FOLDS(transformed_folds=transformed_folds, alphas=[alpha], deltas=[delta], interaction_type=interaction_types[i], PROVINCES_NUM=PROVINCES_NUM)
@@ -224,7 +222,6 @@ def Evaluate(transformed_folds, alpha_set, delta_set, interaction_types, PROVINC
                 RMSE_validation = RMSE_validation_cur
                 alpha_d = alpha 
                 delta_d = delta
-                print(alpha_d, delta_d, RMSE_train_cur, RMSE_validation_cur)
     
     return alpha_d, delta_d, RMSE_validation
 
@@ -232,20 +229,17 @@ def Evaluate(transformed_folds, alpha_set, delta_set, interaction_types, PROVINC
 #folds: It has got 3 items, each item consists of 4 parts: X_train, X_test, y_train and y_test
 #selected_features: a set of common features among 3 set of selected features which are determined from each fold by Elastic Net
 #K: number of choosen kernel functions
-def heuristic_interaction_detection(scaled_folds, selected_features, K, alphas_res=[], deltas_res=[], M=1, PROVINCES_NUM=np.nan):
-    
+def heuristic_interaction_detection(scaled_folds, selected_features, K=6, PROVINCES_NUM=np.nan):
+
     if (PROVINCES_NUM != PROVINCES_NUM):
-        print('Entering province num')
+        print('Entering provinces num')
         return False
     
     attribute_num = len(selected_features)
     
-    # if (M == -1):
-    # alphas_res = []
-    # deltas_res = []
-    # M = 1
-    # else:
-    #     M += 1
+    alphas_res = []
+    deltas_res = []
+    M = 1
 
     alpha_set = alpha_generation(attribute_num=attribute_num)
     
@@ -257,8 +251,6 @@ def heuristic_interaction_detection(scaled_folds, selected_features, K, alphas_r
     delta_set = delta_generation(K=K)
     
     while(True):
-        
-        # print("Round:", M)
 
         transformed_folds = transform_data(scaled_folds=scaled_folds, selected_features=selected_features, alphas=alphas_res, deltas=deltas_res)
         
@@ -268,14 +260,11 @@ def heuristic_interaction_detection(scaled_folds, selected_features, K, alphas_r
             alphas_res.append(alpha_d)
             deltas_res.append(delta_d)
             M = M + 1
-            # if (M == 9):
-            #     break
-            # break
         else:
             break
     
     
     transformed_folds = transform_data(scaled_folds=scaled_folds, selected_features=selected_features, alphas=alphas_res, deltas=deltas_res)
-    rmse_train, rmse_validation = RMSE_FOLDS(transformed_folds=transformed_folds, alphas=[], deltas=[], PROVINCES_NUM=PROVINCES_NUM)
+    rmse_train, rmse_validation = RMSE_FOLDS(transformed_folds=transformed_folds, PROVINCES_NUM=PROVINCES_NUM)
     
     return alphas_res, deltas_res, rmse_train, rmse_validation
