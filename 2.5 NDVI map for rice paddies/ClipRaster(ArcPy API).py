@@ -1,10 +1,10 @@
 import arcpy
 
-raster_fin = r"C:\Application\Crop-Yield-Prediction\Data\NDVI of Red River Delta"
+raster_fin = r"C:\Application\Crop-Yield-Prediction\Data\NDVI of DHMT&DBSCL"
 vector_fin = r"C:\Application\Crop-Yield-Prediction\Data\Province Rice Paddies (2000 - 2020)"
 f_out = r"C:\Application\Crop-Yield-Prediction\Data\NDVI of Rice Paddies"
 
-provinces = ['Ha_Noi', 'Hai_Duong', 'Hai_Phong', 'Hung_Yen', 'Nam_Dinh', 'Ninh_Binh', 'Quang_Ninh', 'Thai_Binh', 'Vinh_Phuc', 'Bac_Ninh', 'Ha_Nam']
+provinces = ['Long_An', 'Tien_Giang', 'Ben_Tre', 'Tra_Vinh', 'Dong_Thap', 'An_Giang', 'Kien_Giang', 'Can_Tho', 'Soc_Trang', 'Bac_Lieu', 'Ca_Mau']
 
 for province in provinces:
     for year in range(2000, 2021):
