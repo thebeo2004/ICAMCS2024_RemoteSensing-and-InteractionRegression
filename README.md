@@ -1,1 +1,2 @@
-# An interaction model & remote sensing application in crop yield prediction
+# Application of remote sensing in an interaction regression model to enhance crop yield prediction in selected regions of the Mekong River Delta, Vietnam
+
